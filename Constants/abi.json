@@ -1,0 +1,758 @@
+[
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "randomNumberContract",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "previousOwner",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "newOwner",
+                "type": "address"
+            }
+        ],
+        "name": "OwnershipTransferred",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "dealer",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "string",
+                "name": "gameKeyHash",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "internalType": "string",
+                "name": "gameKey",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "timeStamp",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "string",
+                "name": "newStatus",
+                "type": "string"
+            }
+        ],
+        "name": "gameStatusChanged",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "dealer",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "string",
+                "name": "gameKeyHash",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "internalType": "string",
+                "name": "gameKey",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "timeStamp",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "ante",
+                "type": "uint256"
+            }
+        ],
+        "name": "newGameStarted",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "player",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "string",
+                "name": "gameKeyHash",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "internalType": "string",
+                "name": "gameKey",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "timeStamp",
+                "type": "uint256"
+            }
+        ],
+        "name": "playerJoined",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "player",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "string",
+                "name": "gameKeyHash",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "internalType": "string",
+                "name": "gameKey",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "timeStamp",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "highLow",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "oddEven",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256[10]",
+                "name": "numbers",
+                "type": "uint256[10]"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "ante",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "playersStack",
+                "type": "uint256"
+            }
+        ],
+        "name": "playerSubmittedNumbers",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "player",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "string",
+                "name": "gameKeyHash",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "internalType": "string",
+                "name": "gameKey",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "internalType": "string",
+                "name": "playerName",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "internalType": "string",
+                "name": "category",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "amountWon",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "playerStack",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "currentRound",
+                "type": "uint256"
+            }
+        ],
+        "name": "playerWon",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "string",
+                "name": "gameKeyHash",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "internalType": "string",
+                "name": "gameKey",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "internalType": "bool",
+                "name": "succeeded",
+                "type": "bool"
+            }
+        ],
+        "name": "randomNumberRequestReturn",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "string",
+                "name": "gameKeyHash",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "internalType": "string",
+                "name": "gameKey",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "timeStamp",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "currentRound",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "winningNumber",
+                "type": "uint256"
+            }
+        ],
+        "name": "rouletteWheelSpun",
+        "type": "event"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "_gameKey",
+                "type": "string"
+            }
+        ],
+        "name": "cancelNewGame",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getCryptoRouletteBalance",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getCurrentGames",
+        "outputs": [
+            {
+                "internalType": "string[]",
+                "name": "",
+                "type": "string[]"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getDealerFee",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getDealerFeeBalance",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "_dealer",
+                "type": "address"
+            }
+        ],
+        "name": "getDealerGameKeys",
+        "outputs": [
+            {
+                "internalType": "string[]",
+                "name": "keys",
+                "type": "string[]"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "_gameKey",
+                "type": "string"
+            }
+        ],
+        "name": "getGameInfo",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "dealer",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "ante",
+                "type": "uint256"
+            },
+            {
+                "internalType": "string",
+                "name": "gameStatus",
+                "type": "string"
+            },
+            {
+                "internalType": "uint256",
+                "name": "potAmount",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "playerCount",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "currentRound",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "startTime",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "_gameKey",
+                "type": "string"
+            }
+        ],
+        "name": "getGamePlayers",
+        "outputs": [
+            {
+                "internalType": "address[6]",
+                "name": "playerAddresses",
+                "type": "address[6]"
+            },
+            {
+                "internalType": "uint256[6]",
+                "name": "playerStacks",
+                "type": "uint256[6]"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "_gameKey",
+                "type": "string"
+            }
+        ],
+        "name": "getGameStatus",
+        "outputs": [
+            {
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "_gameKey",
+                "type": "string"
+            }
+        ],
+        "name": "getPlayerFee",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "_player",
+                "type": "address"
+            }
+        ],
+        "name": "getPlayerGameKeys",
+        "outputs": [
+            {
+                "internalType": "string[]",
+                "name": "keys",
+                "type": "string[]"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "_gameKey",
+                "type": "string"
+            },
+            {
+                "internalType": "uint256",
+                "name": "round",
+                "type": "uint256"
+            },
+            {
+                "internalType": "address",
+                "name": "_player",
+                "type": "address"
+            }
+        ],
+        "name": "getPlayerPicks",
+        "outputs": [
+            {
+                "internalType": "uint256[12]",
+                "name": "",
+                "type": "uint256[12]"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "_gameKey",
+                "type": "string"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_round",
+                "type": "uint256"
+            }
+        ],
+        "name": "getWinningNumber",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "_gameKey",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "playerName",
+                "type": "string"
+            }
+        ],
+        "name": "joinGame",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "owner",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "renounceOwnership",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bool",
+                "name": "_allowNewGames",
+                "type": "bool"
+            }
+        ],
+        "name": "setAllowNewGames",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_newDealerFee",
+                "type": "uint256"
+            }
+        ],
+        "name": "setDealerFee",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "_gameKey",
+                "type": "string"
+            }
+        ],
+        "name": "setGameToInProgress",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "_gameKey",
+                "type": "string"
+            }
+        ],
+        "name": "setReadyForPlayers",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_ante",
+                "type": "uint256"
+            },
+            {
+                "internalType": "string",
+                "name": "_gameKey",
+                "type": "string"
+            }
+        ],
+        "name": "startNewGame",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "_gameKey",
+                "type": "string"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_highLow",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_oddEven",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256[]",
+                "name": "_numbers",
+                "type": "uint256[]"
+            }
+        ],
+        "name": "submitNumbers",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "newOwner",
+                "type": "address"
+            }
+        ],
+        "name": "transferOwnership",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "withdrawDealerFees",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "withdrawalAll",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "_gameKey",
+                "type": "string"
+            }
+        ],
+        "name": "withdrawalStack",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+    }
+]
