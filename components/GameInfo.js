@@ -99,9 +99,10 @@ export default function GameInfo(props){
         props.callUpdateGameList()
     }
 
+    
+
     async function updateUI(){
         const gameInfo = await getGameInfo()
-        console.log(gameInfo.dealer)
         setGameInfo(gameInfo)
     }
 
@@ -120,6 +121,7 @@ export default function GameInfo(props){
                 <p>Number of players: {Number(gameInfo.playerCount)}</p> 
                 <button onClick={() => {handleGameReadyPlayersButtonClick()}}>Set Ready for Players</button>
                 <button onClick={() => {handleCancelGameButtonClick()}}>Cancel Game</button>
+                <div><button onClick={() => {props.hideGameInfo()}}>Hide Game Info</button></div>
             </div>
 
         }
@@ -132,7 +134,7 @@ export default function GameInfo(props){
                 {props.gameInfoParent === "DealerGames" ? <button onClick={() => {handleGameInProgressButtonClick()}}>Set Game to In Progress</button> : <></>}
                 {props.gameInfoParent === "DealerGames" ? <button onClick={() => {handleCancelGameButtonClick()}}>Cancel Game</button> : <></>}
                 {props.gameInfoParent === "JoinGame" ? <button onClick={() => {handleJoinGameButtonClick()}}>Join Game</button> : <></>}
-                
+                <div><button onClick={() => {props.hideGameInfo()}}>Hide Game Info</button></div>
             </div>
 
         }
@@ -142,7 +144,9 @@ export default function GameInfo(props){
                 <p>Status: {gameInfo.gameStatus}</p>
                 <p>Ante: {Number(gameInfo.ante)/10e17} ether</p>
                 <p>Number of players: {Number(gameInfo.playerCount)}</p> 
-                <p>Current Round: {Number(gameInfo.playerCount)}</p>
+                <p>Current Round: {Number(gameInfo.currentRound)}</p>
+                {props.gameInfoParent === "PlayerGames" ? <button onClick={() => {props.playGame(props.gameKey)}}>Play Game</button> : <></>}
+                {props.gameInfoParent !== "CurrentGame" ? <div><button onClick={() => {props.hideGameInfo()}}>Hide Game Info</button></div> : <></>}
             </div>
         }
 
@@ -152,9 +156,12 @@ export default function GameInfo(props){
                 <p>Status: {gameInfo.gameStatus}</p>
                 <p>Ante: {Number(gameInfo.ante)/10e17} ether</p>
                 <p>Number of players: {Number(gameInfo.playerCount)}</p> 
+                {props.gameInfoParent === "PlayerGames" ? <button onClick={() => {props.playGame(props.gameKey)}}>Show Game</button> : <></>}
+                <div><button onClick={() => {props.hideGameInfo()}}>Hide Game Info</button></div>
             </div>
         }
     }
 
-    return <div>{getGameInfoControls()}<div><button onClick={() => {props.hideGameInfo()}}>Hide Game Info</button></div></div>
+    return <div>{getGameInfoControls()}</div>
+
 }

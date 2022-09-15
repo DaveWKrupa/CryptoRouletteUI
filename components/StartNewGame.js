@@ -1,6 +1,5 @@
 import { useWeb3Contract } from "react-moralis"
 import { abi } from "../Constants"
-import { useMoralis } from "react-moralis"
 import { useEffect, useState } from "react"
 import { ethers } from "ethers"
 import { useNotification } from "web3uikit"
@@ -66,7 +65,7 @@ export default function StartNewGame(props){
         if (props.account) {
             //game key is going to be subset of account address and the current date and time
             const today = new Date()
-            var gameKey = props.account.slice(0, 4) + "..." + props.account.slice(props.account.length - 4) + "-" + today.toString()
+            var gameKey = props.account.slice(0, 6) + "..." + props.account.slice(props.account.length - 6) + "-" + today.toString()
             console.log(gameKey)
             return gameKey
         }
